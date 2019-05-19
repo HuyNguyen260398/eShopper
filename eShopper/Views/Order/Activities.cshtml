@@ -1,0 +1,58 @@
+﻿@model PagedList.IPagedList<eShopper.Models.Order>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedListAdmin.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "CustomerList";
+    Layout = "~/Views/Layout/_Admin.cshtml";
+}
+
+<h4>Orders of @ViewBag.Customer</h4>
+
+<br />
+
+<table class="table" style="border: 2px solid #33B35A">
+    <tr>
+        <th style="background-color: #33B35A; color:white; text-align:center">Date</th>
+        <th style="background-color: #33B35A; color:white; text-align:center">Payment</th>
+        <th style="background-color: #33B35A; color:white; text-align:center">Payment Method</th>
+        <th style="background-color: #33B35A; color:white; text-align:center">Payment Status</th>
+        <th style="background-color: #33B35A; color:white; text-align:center">Order Status</th>
+        <th style="background-color: #33B35A; color:white; text-align:center"></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="text-align:center">@item.Order_Date</td>
+            <td style="text-align:center">$ @String.Format("{0:0,0}", item.Order_Payment)</td>
+            <td style="text-align:center">@item.Payment_Method</td>
+            <td style="text-align:center">@item.Payment_Status</td>
+            <td style="text-align:center">@item.Order_Status</td>
+            <td style="text-align:center">
+                <a href=@Url.Action("CustomerOrderDetails", "Order", new { id = item.Order_ID }) class="btn btn-sm" style="background-color:#33B35A; color:white">Details</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    <h6 style="color:#33B35A">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</h6>
+
+    @Html.PagedListPager(Model, page_no => Url.Action("Activities", new
+    {
+        page_no,
+    }),
+                                       new PagedListRenderOptions
+                                       {
+                                           DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                           DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                           DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                           DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                           MaximumPageNumbersToDisplay = 3
+                                       })
+</div>
+
+<div class="col-md-12">
+    <a href=@Url.Action("Customer", "Order") class="btn" style="background-color:#33B35A; color:white; float:right; margin-bottom:15px">Back to list</a>
+</div>

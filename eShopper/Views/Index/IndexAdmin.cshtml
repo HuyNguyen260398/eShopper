@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "IndexAdmin";
+    Layout = "~/Views/Layout/_Admin.cshtml";
+}
+
+<section class="dashboard-counts section-padding">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6">
+                <div class="wrapper count-title d-flex">
+                    <div class="icon"><i class="icon-website"></i></div>
+                    <div class="name">
+                        <a href=@Url.Action("Index", "Brands")><strong class="text-uppercase">Brands</strong></a><span><a href=@Url.Action("Create", "Brands")>Create New</a></span><span>Total Brands</span>
+                        <div class="count-number" style="font-size: 25px">@ViewBag.BCount</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6">
+                <div class="wrapper count-title d-flex">
+                    <div class="icon"><i class="icon-padnote"></i></div>
+                    <div class="name">
+                        <a href=@Url.Action("Index", "Categories")><strong class="text-uppercase">Categories</strong></a><span><a href=@Url.Action("Create", "Categories")>Create New</a></span><span><a>Total Categories</a></span>
+                        <div class="count-number" style="font-size: 25px">@ViewBag.CCount</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6">
+                <div class="wrapper count-title d-flex">
+                    <div class="icon"><i class="icon-screen"></i></div>
+                    <div class="name">
+                        <a href=@Url.Action("Index", "Products")><strong class="text-uppercase">Products</strong></a><span><a href=@Url.Action("Create", "Products")>Create New</a></span><span><a>Total Products</a></span>
+                        <div class="count-number" style="font-size: 25px">@ViewBag.PCount</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6">
+                <div class="wrapper count-title d-flex">
+                    <div class="icon"><i class="icon-user"></i></div>
+                    <div class="name">
+                        <a href=@Url.Action("Customer", "Order")><strong class="text-uppercase">Customers</strong></a><span><a>Check Info</a></span><span><a>Total Customers</a></span>
+                        <div class="count-number" style="font-size: 25px">@ViewBag.UCount</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6">
+                <div class="wrapper count-title d-flex">
+                    <div class="icon"><i class="icon-bill"></i></div>
+                    <div class="name">
+                        <a href=@Url.Action("Index", "Order")><strong class="text-uppercase">Orders</strong></a><span><a href=@Url.Action("Index", "Order")>View List</a></span><span><a>Total Orders</a></span>
+                        <div class="count-number" style="font-size: 25px">@ViewBag.OCount</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-2 col-md-4 col-6">
+                <div class="wrapper count-title d-flex">
+                    <div class="icon"><i class="icon-presentation"></i></div>
+                    <div class="name">
+                        <a href=@Url.Action("Index", "Report")><strong class="text-uppercase">Reports</strong></a><span><a>View Report</a></span><span><a>Total Revenue</a></span>
+                        <div class="count-number" style="font-size: 25px">$ @ViewBag.TotalRevenue</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dashboard-header section-padding">
+    <div class="container-fluid">
+        <div class="row d-flex align-items-md-stretch">
+            <!-- To Do List-->
+            <div class="col-lg-3 col-md-6">
+                <div class="card to-do">
+                    <h2 class="display h4">To do List</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    <ul class="check-lists list-unstyled">
+                        <li class="d-flex align-items-center">
+                            <input type="checkbox" id="list-1" name="list-1" class="form-control-custom">
+                            <label for="list-1">Similique sunt in culpa qui officia</label>
+                        </li>
+                        <li class="d-flex align-items-center">
+                            <input type="checkbox" id="list-2" name="list-2" class="form-control-custom">
+                            <label for="list-2">Ed ut perspiciatis unde omnis iste</label>
+                        </li>
+                        <li class="d-flex align-items-center">
+                            <input type="checkbox" id="list-3" name="list-3" class="form-control-custom">
+                            <label for="list-3">At vero eos et accusamus et iusto </label>
+                        </li>
+                        <li class="d-flex align-items-center">
+                            <input type="checkbox" id="list-4" name="list-4" class="form-control-custom">
+                            <label for="list-4">Explicabo Nemo ipsam voluptatem</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Pie Chart-->
+            <div class="col-lg-3 col-md-6">
+                <div class="card project-progress">
+                    <h2 class="display h4">Project Beta progress</h2>
+                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    <div class="pie-chart">
+                        <canvas id="pieChart" width="300" height="300"> </canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Line Chart -->
+            <div class="col-lg-6 col-md-12 flex-lg-last flex-md-first align-self-baseline">
+                <div class="card sales-report">
+                    <h2 class="display h4">Sales marketing report</h2>
+                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet officiis</p>
+                    <div class="line-chart">
+                        <canvas id="lineCahrt"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

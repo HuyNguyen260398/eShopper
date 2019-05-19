@@ -1,0 +1,338 @@
+﻿@model PagedList.IPagedList<eShopper.Models.Product>
+@using PagedList.Mvc;
+@using eShopper.Models;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/_Customer.cshtml";
+
+    //var activeTab = ((IEnumerable<eShopper.Models.Category>)ViewBag.Categories).ElementAt(0);
+    //var tabs = ((IEnumerable<eShopper.Models.Category>)ViewBag.Categories).Where(a => a.Category_ID != activeTab.Category_ID).ToList();
+
+
+    //List<IList<eShopper.Models.Product>> bigList = new List<IList<eShopper.Models.Product>>();
+    //List<eShopper.Models.Product> smallList = new List<eShopper.Models.Product>();
+
+    //var add = 1;
+    //var divide = (Model.Count() / 3) + 1;
+    //for (int a = 0; a <= divide; a++)
+    //{
+    //    if (add <= Model.Count())
+    //    {
+
+    //        for (int i = 0; i < 3; i++)
+    //        {
+    //            {
+    //                var p = Model.ElementAt(add - 1);
+    //                smallList.Add(p);
+    //                add++;
+    //            }
+    //        }
+
+    //        if (bigList.Count() > 0)
+    //        {
+    //            bigList.Add(smallList);
+    //            bigList[a - 1] = bigList[a];
+    //            bigList[a] = smallList;
+    //            smallList.RemoveRange(0, 3);
+    //        }
+    //        else
+    //        {
+    //            bigList.Add(smallList);
+    //        }
+
+    //    }
+    //}
+
+    //var activeItem = bigList.ElementAt(0);
+    //bigList.RemoveAt(0);
+
+}
+
+<section id="slider">
+    <!--slider-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#slider-carousel" data-slide-to="1"></li>
+                        <li data-target="#slider-carousel" data-slide-to="2"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="col-sm-6">
+                                <h1><span>E</span>-SHOPPER</h1>
+                                <h2>Free E-Commerce Template</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                <button type="button" class="btn btn-default get">Get it now</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="~/Template/Eshopper/images/home/girl1.jpg" class="girl img-responsive" alt="" />
+                                <img src="~/Template/Eshopper/images/home/pricing.png" class="pricing" alt="" />
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1><span>E</span>-SHOPPER</h1>
+                                <h2>100% Responsive Design</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                <button type="button" class="btn btn-default get">Get it now</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="~/Template/Eshopper/images/home/girl2.jpg" class="girl img-responsive" alt="" />
+                                <img src="~/Template/Eshopper/images/home/pricing.png" class="pricing" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1><span>E</span>-SHOPPER</h1>
+                                <h2>Free Ecommerce Template</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                <button type="button" class="btn btn-default get">Get it now</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="~/Template/Eshopper/images/home/girl3.jpg" class="girl img-responsive" alt="" />
+                                <img src="~/Template/Eshopper/images/home/pricing.png" class="pricing" alt="" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section><!--/slider-->
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Category</h2>
+                    <div class="panel-group category-products" id="accordian">
+                        <!--category-products-->
+                        @foreach (var item in (IEnumerable<eShopper.Models.Category>)ViewBag.Categories)
+                        {
+                            var count = Model.Where(a => a.Product_Category == item.Category_ID).ToList().Count();
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><a href=@Url.Action("Index", "Product", new {category = item.Category_ID })><span class="pull-right">(@count)</span>@item.Category_Name</a></h4>
+                                </div>
+                            </div>
+                        }
+                    </div><!--/category-products-->
+
+                    <div class="brands_products">
+                        <!--brands_products-->
+                        <h2>Brands</h2>
+                        <div class="brands-name">
+                            <ul class="nav nav-pills nav-stacked">
+                                @foreach (var item in (IEnumerable<eShopper.Models.Brand>)ViewBag.Brands)
+                                {
+                                    var count = Model.Where(a => a.Product_Brand == item.Brand_ID).ToList().Count();
+                                    <li><a href=@Url.Action("Index", "Product", new {brand = item.Brand_ID })> <span class="pull-right">(@count)</span>@item.Brand_Name</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div><!--/brands_products-->
+
+                    <div class="price-range">
+                        <!--price-range-->
+                        <h2>Price Range</h2>
+                        <div class="well text-center">
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
+                            <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+                        </div>
+                    </div><!--/price-range-->
+
+                    <div class="shipping text-center">
+                        <!--shipping-->
+                        <img src="~/Template/Eshopper/images/home/shipping.jpg" alt="" />
+                    </div><!--/shipping-->
+
+                </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center">Features Items</h2>
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <img src="@item.Product_Image" alt="" />
+                                        <h2>$ @String.Format("{0:0,0}", item.Product_Price)</h2>
+                                        <p>@item.Product_Name</p>
+                                        <a href=@Url.Action("AddCart", "Cart", new { id = item.Product_ID, strURL = Request.Url.ToString() }) class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </div>
+                                    <div class="product-overlay">
+                                        <div class="overlay-content">
+                                            <h2>$ @String.Format("{0:0,0}", item.Product_Price)</h2>
+                                            <p>@item.Product_Name</p>
+                                            <p><a href=@Url.Action("Details", "Product", new { id = item.Product_ID }) style="color:white">Details</a></p>
+                                            <a href=@Url.Action("AddCart", "Cart", new { id = item.Product_ID, strURL = Request.Url.ToString() }) class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="choose">
+                                    <ul class="nav nav-pills nav-justified">
+                                        <li><a href=@Url.Action("AddWishList", "Cart", new { id = item.Product_ID, strURL = Request.Url.ToString() })><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                                        <li><a href=@Url.Action("AddCompareList", "Cart", new { id = item.Product_ID, strURL = Request.Url.ToString() })><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="col-sm-12">
+                        <h6 style="color:#FFAD41">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</h6>
+
+                        @Html.PagedListPager(Model, page_no => Url.Action("Index", new
+                        {
+                            page_no
+                        }),
+                       new PagedListRenderOptions
+                       {
+                           DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                           DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                           DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                           DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                           MaximumPageNumbersToDisplay = 3
+                       })
+                    </div>
+
+                </div><!--features_items-->
+                @*<div class="category-tab">
+                        <!--category-tab-->
+                        <div class="col-sm-12">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#@activeTab.Category_ID" data-toggle="tab">@activeTab.Category_Name</a></li>
+                                @foreach (var item in tabs)
+                                {
+                                    <li><a href="#@item.Category_ID" data-toggle="tab">@item.Category_Name</a></li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade active in" id="@activeTab.Category_ID">
+                                @foreach (var item in Model.Where(a => a.Product_Category == activeTab.Category_ID))
+                                {
+                                    <div class="col-sm-3">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="@item.Product_Image" alt="" />
+                                                    <h2>$ @String.Format("{0:0,0}", item.Product_Price)</h2>
+                                                    <p>@item.Product_Name</p>
+                                                    <p><a href=@Url.Action("Details", "Product", new { id = item.Product_ID }) style="color:black">Details</a></p>
+                                                    <a href=@Url.Action("AddCart", "Cart", new { id = item.Product_ID, strURL = Request.Url.ToString() }) class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            @foreach (var item in tabs)
+                            {
+                                <div class="tab-pane fade" id="@item.Category_ID">
+                                    @foreach (var p in Model.Where(a => a.Product_Category == item.Category_ID))
+                                    {
+                                        <div class="col-sm-3">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="@p.Product_Image" alt="" />
+                                                        <h2>$ @String.Format("{0:0,0}", p.Product_Price)</h2>
+                                                        <p>@p.Product_Name</p>
+                                                        <p><a href=@Url.Action("Details", "Product", new { id = p.Product_ID }) style="color:black">Details</a></p>
+                                                        <a href=@Url.Action("AddCart", "Cart", new { id = p.Product_ID, strURL = Request.Url.ToString() }) class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div><!--/category-tab-->
+
+                    <div class="recommended_items">
+                        <!--recommended_items-->
+                        <h2 class="title text-center">recommended items</h2>
+
+                        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    @foreach (var item in activeItem)
+                                    {
+                                        <div class="col-sm-4">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="@item.Product_Image" alt="" />
+                                                        <h2>$ @String.Format("{0:0,0}", item.Product_Price)</h2>
+                                                        <p>@item.Product_Name</p>
+                                                        <p><a href=@Url.Action("Details", "Product", new { id = item.Product_ID }) style="color:black">Details</a></p>
+                                                        <a href=@Url.Action("AddCart", "Cart", new { id = item.Product_ID, strURL = Request.Url.ToString() }) class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                @foreach (var item in bigList)
+                                {
+                                    <div class="item">
+                                        @foreach (var p in item)
+                                        {
+                                            <div class="col-sm-4">
+                                                <div class="product-image-wrapper">
+                                                    <div class="single-products">
+                                                        <div class="productinfo text-center">
+                                                            <img src="@p.Product_Image" alt="" />
+                                                            <h2>$ @String.Format("{0:0,0}", p.Product_Price)</h2>
+                                                            <p>@p.Product_Name</p>
+                                                            <p><a href=@Url.Action("Details", "Product", new { id = p.Product_ID }) style="color:black">Details</a></p>
+                                                            <a href=@Url.Action("AddCart", "Cart", new { id = p.Product_ID, strURL = Request.Url.ToString() }) class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                            <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </div><!--/recommended_items-->*@
+
+            </div>
+        </div>
+    </div>
+</section>

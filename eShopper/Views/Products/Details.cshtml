@@ -1,0 +1,52 @@
+﻿@model eShopper.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Layout/_Admin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+
+    <table class="table">
+        <tr>
+            <td style="width:200px">
+                <img src="@Model.Product_Image"/>
+            </td>
+            <td>
+                <table class="table">
+                    <tr>
+                        <td><strong>Product</strong></td>
+                        <td>@Model.Product_Name</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Brand</strong></td>
+                        <td>@Model.Brand.Brand_Name</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Category</strong></td>
+                        <td>@Model.Category.Category_Name</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Price</strong></td>
+                        <td>$ @String.Format("{0:0,0}", Model.Product_Price)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Condition</strong></td>
+                        <td>@Model.Product_Condition</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Availability</strong></td>
+                        <td>@Model.Product_Availability</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Product_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

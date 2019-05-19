@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8ffd5b1a3728404fbe71be06fbe1db24" Name="Diagram1">
+        <EntityTypeShape EntityType="eShopperModel.Brand" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="eShopperModel.Category" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="eShopperModel.Order" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="eShopperModel.Order_Detail" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="eShopperModel.Product" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="eShopperModel.Review" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="eShopperModel.User" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="eShopperModel.PK_Product_Brand" ManuallyRouted="false" />
+        <AssociationConnector Association="eShopperModel.PK_Product_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="eShopperModel.PK_OD_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="eShopperModel.PK_Order_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="eShopperModel.PK_OD_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="eShopperModel.PK_Review_Product" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="eShopperModel.vOrderDetail" Width="1.5" PointX="7.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,827 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{81936116-C733-449F-BA58-5D0B403FACEF}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eShopper</RootNamespace>
+    <AssemblyName>eShopper</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\PagedListAdmin.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\chart.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Template\AdminLite\charts.html" />
+    <Content Include="Template\AdminLite\credits.txt" />
+    <Content Include="Template\AdminLite\css\custom.css" />
+    <Content Include="Template\AdminLite\css\fontastic.css" />
+    <Content Include="Template\AdminLite\css\grasp_mobile_progress_circle-1.0.0.min.css" />
+    <Content Include="Template\AdminLite\css\style.blue.css" />
+    <Content Include="Template\AdminLite\css\style.default.css" />
+    <Content Include="Template\AdminLite\css\style.green.css" />
+    <Content Include="Template\AdminLite\css\style.pink.css" />
+    <Content Include="Template\AdminLite\css\style.red.css" />
+    <Content Include="Template\AdminLite\css\style.sea.css" />
+    <Content Include="Template\AdminLite\css\style.violet.css" />
+    <Content Include="Template\AdminLite\font-awesome\fontawesome-all.css" />
+    <Content Include="Template\AdminLite\fonts\dashboard.svg" />
+    <Content Include="Template\AdminLite\forms.html" />
+    <Content Include="Template\AdminLite\icons-reference\fonts\dashboard.svg" />
+    <Content Include="Template\AdminLite\icons-reference\icons-reference.html" />
+    <Content Include="Template\AdminLite\icons-reference\styles.css" />
+    <Content Include="Template\AdminLite\img\avatar-1.jpg" />
+    <Content Include="Template\AdminLite\img\avatar-2.jpg" />
+    <Content Include="Template\AdminLite\img\avatar-3.jpg" />
+    <Content Include="Template\AdminLite\img\avatar-4.jpg" />
+    <Content Include="Template\AdminLite\img\avatar-5.jpg" />
+    <Content Include="Template\AdminLite\img\avatar-6.jpg" />
+    <Content Include="Template\AdminLite\img\COMMUNICATION.png" />
+    <Content Include="Template\AdminLite\img\favicon.ico" />
+    <Content Include="Template\AdminLite\img\flags\16\AD.png" />
+    <Content Include="Template\AdminLite\img\flags\16\AE.png" />
+    <Content Include="Template\AdminLite\img\flags\16\AF.png" />
+    <Content Include="Template\AdminLite\img\flags\16\AG.png" />
+    <Content Include="Template\AdminLite\img\flags\16\AI.png" />
+    <Content Include="Template\AdminLite\img\flags\16\AL.png" />
+    <Content Include="Template\AdminLite\img\flags\16\AM.png" />
+    <Content Include="Template\AdminLite\img\flags\16\AN.png" />
+    <Content Include="Template\AdminLite\img\flags\16\AO.png" />
+    <Content Include="Template\AdminLite\img\flags\16\AQ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\AR.png" />
+    <Content Include="Template\AdminLite\img\flags\16\AS.png" />
+    <Content Include="Template\AdminLite\img\flags\16\AT.png" />
+    <Content Include="Template\AdminLite\img\flags\16\AU.png" />
+    <Content Include="Template\AdminLite\img\flags\16\AW.png" />
+    <Content Include="Template\AdminLite\img\flags\16\AX.png" />
+    <Content Include="Template\AdminLite\img\flags\16\AZ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BA.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BB.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BD.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BE.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BF.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BG.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BH.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BI.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BJ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BL.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BM.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BN.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BO.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BR.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BS.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BT.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BW.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BY.png" />
+    <Content Include="Template\AdminLite\img\flags\16\BZ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CA.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CC.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CD.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CF.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CG.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CH.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CI.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CK.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CL.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CM.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CN.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CO.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CR.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CT.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CU.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CV.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CW.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CX.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CY.png" />
+    <Content Include="Template\AdminLite\img\flags\16\CZ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\DE.png" />
+    <Content Include="Template\AdminLite\img\flags\16\DJ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\DK.png" />
+    <Content Include="Template\AdminLite\img\flags\16\DM.png" />
+    <Content Include="Template\AdminLite\img\flags\16\DO.png" />
+    <Content Include="Template\AdminLite\img\flags\16\DZ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\EC.png" />
+    <Content Include="Template\AdminLite\img\flags\16\EE.png" />
+    <Content Include="Template\AdminLite\img\flags\16\EG.png" />
+    <Content Include="Template\AdminLite\img\flags\16\EH.png" />
+    <Content Include="Template\AdminLite\img\flags\16\ER.png" />
+    <Content Include="Template\AdminLite\img\flags\16\ES.png" />
+    <Content Include="Template\AdminLite\img\flags\16\ET.png" />
+    <Content Include="Template\AdminLite\img\flags\16\EU.png" />
+    <Content Include="Template\AdminLite\img\flags\16\FI.png" />
+    <Content Include="Template\AdminLite\img\flags\16\FJ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\FK.png" />
+    <Content Include="Template\AdminLite\img\flags\16\FM.png" />
+    <Content Include="Template\AdminLite\img\flags\16\FO.png" />
+    <Content Include="Template\AdminLite\img\flags\16\FR.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GA.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GB.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GD.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GE.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GG.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GH.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GI.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GL.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GM.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GN.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GQ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GR.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GS.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GT.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GU.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GW.png" />
+    <Content Include="Template\AdminLite\img\flags\16\GY.png" />
+    <Content Include="Template\AdminLite\img\flags\16\HK.png" />
+    <Content Include="Template\AdminLite\img\flags\16\HN.png" />
+    <Content Include="Template\AdminLite\img\flags\16\HR.png" />
+    <Content Include="Template\AdminLite\img\flags\16\HT.png" />
+    <Content Include="Template\AdminLite\img\flags\16\HU.png" />
+    <Content Include="Template\AdminLite\img\flags\16\IC.png" />
+    <Content Include="Template\AdminLite\img\flags\16\ID.png" />
+    <Content Include="Template\AdminLite\img\flags\16\IE.png" />
+    <Content Include="Template\AdminLite\img\flags\16\IL.png" />
+    <Content Include="Template\AdminLite\img\flags\16\IM.png" />
+    <Content Include="Template\AdminLite\img\flags\16\IN.png" />
+    <Content Include="Template\AdminLite\img\flags\16\IQ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\IR.png" />
+    <Content Include="Template\AdminLite\img\flags\16\IS.png" />
+    <Content Include="Template\AdminLite\img\flags\16\IT.png" />
+    <Content Include="Template\AdminLite\img\flags\16\JE.png" />
+    <Content Include="Template\AdminLite\img\flags\16\JM.png" />
+    <Content Include="Template\AdminLite\img\flags\16\JO.png" />
+    <Content Include="Template\AdminLite\img\flags\16\JP.png" />
+    <Content Include="Template\AdminLite\img\flags\16\KE.png" />
+    <Content Include="Template\AdminLite\img\flags\16\KG.png" />
+    <Content Include="Template\AdminLite\img\flags\16\KH.png" />
+    <Content Include="Template\AdminLite\img\flags\16\KI.png" />
+    <Content Include="Template\AdminLite\img\flags\16\KM.png" />
+    <Content Include="Template\AdminLite\img\flags\16\KN.png" />
+    <Content Include="Template\AdminLite\img\flags\16\KP.png" />
+    <Content Include="Template\AdminLite\img\flags\16\KR.png" />
+    <Content Include="Template\AdminLite\img\flags\16\KW.png" />
+    <Content Include="Template\AdminLite\img\flags\16\KY.png" />
+    <Content Include="Template\AdminLite\img\flags\16\KZ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\LA.png" />
+    <Content Include="Template\AdminLite\img\flags\16\LB.png" />
+    <Content Include="Template\AdminLite\img\flags\16\LC.png" />
+    <Content Include="Template\AdminLite\img\flags\16\LI.png" />
+    <Content Include="Template\AdminLite\img\flags\16\LK.png" />
+    <Content Include="Template\AdminLite\img\flags\16\LR.png" />
+    <Content Include="Template\AdminLite\img\flags\16\LS.png" />
+    <Content Include="Template\AdminLite\img\flags\16\LT.png" />
+    <Content Include="Template\AdminLite\img\flags\16\LU.png" />
+    <Content Include="Template\AdminLite\img\flags\16\LV.png" />
+    <Content Include="Template\AdminLite\img\flags\16\LY.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MA.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MC.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MD.png" />
+    <Content Include="Template\AdminLite\img\flags\16\ME.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MF.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MG.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MH.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MK.png" />
+    <Content Include="Template\AdminLite\img\flags\16\ML.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MM.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MN.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MO.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MP.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MQ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MR.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MS.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MT.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MU.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MV.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MW.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MX.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MY.png" />
+    <Content Include="Template\AdminLite\img\flags\16\MZ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\NA.png" />
+    <Content Include="Template\AdminLite\img\flags\16\NC.png" />
+    <Content Include="Template\AdminLite\img\flags\16\NE.png" />
+    <Content Include="Template\AdminLite\img\flags\16\NF.png" />
+    <Content Include="Template\AdminLite\img\flags\16\NG.png" />
+    <Content Include="Template\AdminLite\img\flags\16\NI.png" />
+    <Content Include="Template\AdminLite\img\flags\16\NL.png" />
+    <Content Include="Template\AdminLite\img\flags\16\NO.png" />
+    <Content Include="Template\AdminLite\img\flags\16\NP.png" />
+    <Content Include="Template\AdminLite\img\flags\16\NR.png" />
+    <Content Include="Template\AdminLite\img\flags\16\NU.png" />
+    <Content Include="Template\AdminLite\img\flags\16\NZ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\OM.png" />
+    <Content Include="Template\AdminLite\img\flags\16\PA.png" />
+    <Content Include="Template\AdminLite\img\flags\16\PE.png" />
+    <Content Include="Template\AdminLite\img\flags\16\PF.png" />
+    <Content Include="Template\AdminLite\img\flags\16\PG.png" />
+    <Content Include="Template\AdminLite\img\flags\16\PH.png" />
+    <Content Include="Template\AdminLite\img\flags\16\PK.png" />
+    <Content Include="Template\AdminLite\img\flags\16\PL.png" />
+    <Content Include="Template\AdminLite\img\flags\16\PN.png" />
+    <Content Include="Template\AdminLite\img\flags\16\PR.png" />
+    <Content Include="Template\AdminLite\img\flags\16\PS.png" />
+    <Content Include="Template\AdminLite\img\flags\16\PT.png" />
+    <Content Include="Template\AdminLite\img\flags\16\PW.png" />
+    <Content Include="Template\AdminLite\img\flags\16\PY.png" />
+    <Content Include="Template\AdminLite\img\flags\16\QA.png" />
+    <Content Include="Template\AdminLite\img\flags\16\RE.png" />
+    <Content Include="Template\AdminLite\img\flags\16\RO.png" />
+    <Content Include="Template\AdminLite\img\flags\16\RS.png" />
+    <Content Include="Template\AdminLite\img\flags\16\RU.png" />
+    <Content Include="Template\AdminLite\img\flags\16\RW.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SA.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SB.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SC.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SD.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SE.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SG.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SH.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SI.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SK.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SL.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SM.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SN.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SO.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SR.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SS.png" />
+    <Content Include="Template\AdminLite\img\flags\16\ST.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SV.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SX.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SY.png" />
+    <Content Include="Template\AdminLite\img\flags\16\SZ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\TC.png" />
+    <Content Include="Template\AdminLite\img\flags\16\TD.png" />
+    <Content Include="Template\AdminLite\img\flags\16\TF.png" />
+    <Content Include="Template\AdminLite\img\flags\16\TG.png" />
+    <Content Include="Template\AdminLite\img\flags\16\TH.png" />
+    <Content Include="Template\AdminLite\img\flags\16\TJ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\TK.png" />
+    <Content Include="Template\AdminLite\img\flags\16\TL.png" />
+    <Content Include="Template\AdminLite\img\flags\16\TM.png" />
+    <Content Include="Template\AdminLite\img\flags\16\TN.png" />
+    <Content Include="Template\AdminLite\img\flags\16\TO.png" />
+    <Content Include="Template\AdminLite\img\flags\16\TR.png" />
+    <Content Include="Template\AdminLite\img\flags\16\TT.png" />
+    <Content Include="Template\AdminLite\img\flags\16\TV.png" />
+    <Content Include="Template\AdminLite\img\flags\16\TW.png" />
+    <Content Include="Template\AdminLite\img\flags\16\TZ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\UA.png" />
+    <Content Include="Template\AdminLite\img\flags\16\UG.png" />
+    <Content Include="Template\AdminLite\img\flags\16\US.png" />
+    <Content Include="Template\AdminLite\img\flags\16\UY.png" />
+    <Content Include="Template\AdminLite\img\flags\16\UZ.png" />
+    <Content Include="Template\AdminLite\img\flags\16\VA.png" />
+    <Content Include="Template\AdminLite\img\flags\16\VC.png" />
+    <Content Include="Template\AdminLite\img\flags\16\VE.png" />
+    <Content Include="Template\AdminLite\img\flags\16\VG.png" />
+    <Content Include="Template\AdminLite\img\flags\16\VI.png" />
+    <Content Include="Template\AdminLite\img\flags\16\VN.png" />
+    <Content Include="Template\AdminLite\img\flags\16\VU.png" />
+    <Content Include="Template\AdminLite\img\flags\16\WF.png" />
+    <Content Include="Template\AdminLite\img\flags\16\WS.png" />
+    <Content Include="Template\AdminLite\img\flags\16\YE.png" />
+    <Content Include="Template\AdminLite\img\flags\16\YT.png" />
+    <Content Include="Template\AdminLite\img\flags\16\ZA.png" />
+    <Content Include="Template\AdminLite\img\flags\16\ZM.png" />
+    <Content Include="Template\AdminLite\img\flags\16\ZW.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_abkhazia.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_basque-country.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_british-antarctic-territory.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_commonwealth.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_england.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_gosquared.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_kosovo.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_mars.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_nagorno-karabakh.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_nato.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_northern-cyprus.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_olympics.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_red-cross.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_scotland.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_somaliland.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_south-ossetia.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_united-nations.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_unknown.png" />
+    <Content Include="Template\AdminLite\img\flags\16\_wales.png" />
+    <Content Include="Template\AdminLite\img\flat-face-icon-23.png" />
+    <Content Include="Template\AdminLite\img\map-close.png" />
+    <Content Include="Template\AdminLite\img\map-marker-blue.png" />
+    <Content Include="Template\AdminLite\img\map-marker-default.png" />
+    <Content Include="Template\AdminLite\img\map-marker-green.png" />
+    <Content Include="Template\AdminLite\img\map-marker-pink.png" />
+    <Content Include="Template\AdminLite\img\map-marker-red.png" />
+    <Content Include="Template\AdminLite\img\map-marker-sea.png" />
+    <Content Include="Template\AdminLite\img\map-marker-violet.png" />
+    <Content Include="Template\AdminLite\img\map-marker.png" />
+    <Content Include="Template\AdminLite\img\mockup1.jpg" />
+    <Content Include="Template\AdminLite\img\mockup2.jpg" />
+    <Content Include="Template\AdminLite\img\mockup3.jpg" />
+    <Content Include="Template\AdminLite\img\mockup4.jpg" />
+    <Content Include="Template\AdminLite\img\mockup5.jpg" />
+    <Content Include="Template\AdminLite\img\mockup6.jpg" />
+    <Content Include="Template\AdminLite\img\mockup7.jpg" />
+    <Content Include="Template\AdminLite\img\multiselect-switch.png" />
+    <Content Include="Template\AdminLite\img\staff.png" />
+    <Content Include="Template\AdminLite\img\template-mac.png" />
+    <Content Include="Template\AdminLite\index.html" />
+    <Content Include="Template\AdminLite\js\charts-custom.js" />
+    <Content Include="Template\AdminLite\js\charts-home.js" />
+    <Content Include="Template\AdminLite\js\front.js" />
+    <Content Include="Template\AdminLite\js\grasp_mobile_progress_circle-1.0.0.min.js" />
+    <Content Include="Template\AdminLite\license.txt" />
+    <Content Include="Template\AdminLite\login.html" />
+    <Content Include="Template\AdminLite\readme.txt" />
+    <Content Include="Template\AdminLite\register.html" />
+    <Content Include="Template\AdminLite\tables.html" />
+    <Content Include="Template\AdminLite\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Template\AdminLite\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Template\AdminLite\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Template\AdminLite\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Template\AdminLite\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Template\AdminLite\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Template\AdminLite\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Template\AdminLite\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Template\AdminLite\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Template\AdminLite\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Template\AdminLite\vendor\chart.js\Chart.bundle.js" />
+    <Content Include="Template\AdminLite\vendor\chart.js\Chart.bundle.min.js" />
+    <Content Include="Template\AdminLite\vendor\chart.js\Chart.js" />
+    <Content Include="Template\AdminLite\vendor\chart.js\Chart.min.js" />
+    <Content Include="Template\AdminLite\vendor\font-awesome\css\font-awesome.css" />
+    <Content Include="Template\AdminLite\vendor\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Template\AdminLite\vendor\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Template\AdminLite\vendor\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\additional-methods.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\jquery.validate.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\jquery.validate.min.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_ar.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_az.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_bg.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_bn_BD.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_ca.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_cs.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_da.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_de.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_el.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_es.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_es_AR.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_es_PE.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_et.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_eu.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_fa.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_fi.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_fr.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_ge.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_gl.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_he.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_hr.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_hu.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_hy_AM.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_id.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_is.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_it.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_ja.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_ka.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_kk.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_ko.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_lt.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_lv.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_mk.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_my.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_nl.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_no.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_pl.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_pt_BR.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_pt_PT.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_ro.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_ru.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_sd.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_si.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_sk.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_sl.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_sr.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_sr_lat.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_sv.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_th.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_tj.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_tr.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_uk.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_ur.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_vi.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_zh.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\messages_zh_TW.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\methods_de.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\methods_es_CL.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\methods_fi.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\methods_nl.js" />
+    <Content Include="Template\AdminLite\vendor\jquery-validation\localization\methods_pt.js" />
+    <Content Include="Template\AdminLite\vendor\jquery.cookie\jquery.cookie.js" />
+    <Content Include="Template\AdminLite\vendor\jquery.cookie\MIT-LICENSE.txt" />
+    <Content Include="Template\AdminLite\vendor\jquery\core.js" />
+    <Content Include="Template\AdminLite\vendor\jquery\jquery.js" />
+    <Content Include="Template\AdminLite\vendor\jquery\jquery.min.js" />
+    <Content Include="Template\AdminLite\vendor\jquery\jquery.slim.js" />
+    <Content Include="Template\AdminLite\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Template\AdminLite\vendor\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="Template\AdminLite\vendor\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.css" />
+    <Content Include="Template\AdminLite\vendor\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.js" />
+    <Content Include="Template\AdminLite\vendor\malihu-custom-scrollbar-plugin\mCSB_buttons.png" />
+    <Content Include="Template\AdminLite\vendor\popper.js\esm\popper-utils.js" />
+    <Content Include="Template\AdminLite\vendor\popper.js\esm\popper-utils.min.js" />
+    <Content Include="Template\AdminLite\vendor\popper.js\esm\popper.js" />
+    <Content Include="Template\AdminLite\vendor\popper.js\esm\popper.min.js" />
+    <Content Include="Template\AdminLite\vendor\popper.js\popper-utils.js" />
+    <Content Include="Template\AdminLite\vendor\popper.js\popper-utils.min.js" />
+    <Content Include="Template\AdminLite\vendor\popper.js\popper.js" />
+    <Content Include="Template\AdminLite\vendor\popper.js\popper.min.js" />
+    <Content Include="Template\AdminLite\vendor\popper.js\umd\popper-utils.js" />
+    <Content Include="Template\AdminLite\vendor\popper.js\umd\popper-utils.min.js" />
+    <Content Include="Template\AdminLite\vendor\popper.js\umd\popper.js" />
+    <Content Include="Template\AdminLite\vendor\popper.js\umd\popper.min.js" />
+    <Content Include="Template\Eshopper\404.html" />
+    <Content Include="Template\Eshopper\blog-single.html" />
+    <Content Include="Template\Eshopper\blog.html" />
+    <Content Include="Template\Eshopper\cart.html" />
+    <Content Include="Template\Eshopper\checkout.html" />
+    <Content Include="Template\Eshopper\contact-us.html" />
+    <Content Include="Template\Eshopper\css\animate.css" />
+    <Content Include="Template\Eshopper\css\bootstrap.min.css" />
+    <Content Include="Template\Eshopper\css\font-awesome.min.css" />
+    <Content Include="Template\Eshopper\css\main.css" />
+    <Content Include="Template\Eshopper\css\prettyPhoto.css" />
+    <Content Include="Template\Eshopper\css\price-range.css" />
+    <Content Include="Template\Eshopper\css\responsive.css" />
+    <Content Include="Template\Eshopper\fonts\fontawesome-webfont.svg" />
+    <Content Include="Template\Eshopper\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Template\Eshopper\images\404\404.png" />
+    <Content Include="Template\Eshopper\images\blog\blog-one.jpg" />
+    <Content Include="Template\Eshopper\images\blog\blog-three.jpg" />
+    <Content Include="Template\Eshopper\images\blog\blog-two.jpg" />
+    <Content Include="Template\Eshopper\images\blog\man-four.jpg" />
+    <Content Include="Template\Eshopper\images\blog\man-one.jpg" />
+    <Content Include="Template\Eshopper\images\blog\man-three.jpg" />
+    <Content Include="Template\Eshopper\images\blog\man-two.jpg" />
+    <Content Include="Template\Eshopper\images\blog\socials.png" />
+    <Content Include="Template\Eshopper\images\cart\one.png" />
+    <Content Include="Template\Eshopper\images\cart\three.png" />
+    <Content Include="Template\Eshopper\images\cart\two.png" />
+    <Content Include="Template\Eshopper\images\home\bg_border.png" />
+    <Content Include="Template\Eshopper\images\home\gallery1.jpg" />
+    <Content Include="Template\Eshopper\images\home\gallery2.jpg" />
+    <Content Include="Template\Eshopper\images\home\gallery3.jpg" />
+    <Content Include="Template\Eshopper\images\home\gallery4.jpg" />
+    <Content Include="Template\Eshopper\images\home\girl1.jpg" />
+    <Content Include="Template\Eshopper\images\home\girl2.jpg" />
+    <Content Include="Template\Eshopper\images\home\girl3.jpg" />
+    <Content Include="Template\Eshopper\images\home\iframe1.png" />
+    <Content Include="Template\Eshopper\images\home\iframe2.png" />
+    <Content Include="Template\Eshopper\images\home\iframe3.png" />
+    <Content Include="Template\Eshopper\images\home\iframe4.png" />
+    <Content Include="Template\Eshopper\images\home\logo.png" />
+    <Content Include="Template\Eshopper\images\home\map.png" />
+    <Content Include="Template\Eshopper\images\home\new.png" />
+    <Content Include="Template\Eshopper\images\home\partner1.png" />
+    <Content Include="Template\Eshopper\images\home\partner2.png" />
+    <Content Include="Template\Eshopper\images\home\partner3.png" />
+    <Content Include="Template\Eshopper\images\home\partner4.png" />
+    <Content Include="Template\Eshopper\images\home\pricing.png" />
+    <Content Include="Template\Eshopper\images\home\product1.jpg" />
+    <Content Include="Template\Eshopper\images\home\product2.jpg" />
+    <Content Include="Template\Eshopper\images\home\product3.jpg" />
+    <Content Include="Template\Eshopper\images\home\product4.jpg" />
+    <Content Include="Template\Eshopper\images\home\product5.jpg" />
+    <Content Include="Template\Eshopper\images\home\product6.jpg" />
+    <Content Include="Template\Eshopper\images\home\recommend1.jpg" />
+    <Content Include="Template\Eshopper\images\home\recommend2.jpg" />
+    <Content Include="Template\Eshopper\images\home\recommend3.jpg" />
+    <Content Include="Template\Eshopper\images\home\sale.png" />
+    <Content Include="Template\Eshopper\images\home\searchicon.png" />
+    <Content Include="Template\Eshopper\images\home\shipping.jpg" />
+    <Content Include="Template\Eshopper\images\product-details\1.jpg" />
+    <Content Include="Template\Eshopper\images\product-details\new.jpg" />
+    <Content Include="Template\Eshopper\images\product-details\rating.png" />
+    <Content Include="Template\Eshopper\images\product-details\share.png" />
+    <Content Include="Template\Eshopper\images\product-details\similar1.jpg" />
+    <Content Include="Template\Eshopper\images\product-details\similar2.jpg" />
+    <Content Include="Template\Eshopper\images\product-details\similar3.jpg" />
+    <Content Include="Template\Eshopper\images\shop\advertisement.jpg" />
+    <Content Include="Template\Eshopper\images\shop\product10.jpg" />
+    <Content Include="Template\Eshopper\images\shop\product11.jpg" />
+    <Content Include="Template\Eshopper\images\shop\product12.jpg" />
+    <Content Include="Template\Eshopper\images\shop\product7.jpg" />
+    <Content Include="Template\Eshopper\images\shop\product8.jpg" />
+    <Content Include="Template\Eshopper\images\shop\product9.jpg" />
+    <Content Include="Template\Eshopper\index.html" />
+    <Content Include="Template\Eshopper\js\bootstrap.min.js" />
+    <Content Include="Template\Eshopper\js\contact.js" />
+    <Content Include="Template\Eshopper\js\gmaps.js" />
+    <Content Include="Template\Eshopper\js\html5shiv.js" />
+    <Content Include="Template\Eshopper\js\jquery.js" />
+    <Content Include="Template\Eshopper\js\jquery.prettyPhoto.js" />
+    <Content Include="Template\Eshopper\js\jquery.scrollUp.min.js" />
+    <Content Include="Template\Eshopper\js\main.js" />
+    <Content Include="Template\Eshopper\js\price-range.js" />
+    <Content Include="Template\Eshopper\login.html" />
+    <Content Include="Template\Eshopper\product-details.html" />
+    <Content Include="Template\Eshopper\sendemail.php" />
+    <Content Include="Template\Eshopper\shop.html" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BrandsController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\Brand.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Extended\Product.cs" />
+    <Compile Include="Models\Extended\Review.cs" />
+    <Compile Include="Models\Extended\User.cs" />
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderInfo.cs" />
+    <Compile Include="Models\Order_Detail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report.cs" />
+    <Compile Include="Models\Review.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vOrderDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="Template\Eshopper\fonts\fontawesome-webfont.woff" />
+    <Content Include="Template\Eshopper\fonts\FontAwesome.otf" />
+    <Content Include="Template\Eshopper\fonts\glyphicons-halflings-regular.woff" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <None Include="packages.config" />
+    <Content Include="Template\AdminLite\data\addresses.json" />
+    <Content Include="Template\AdminLite\data\countries.json" />
+    <Content Include="Template\AdminLite\fonts\dashboard.eot" />
+    <Content Include="Template\AdminLite\fonts\dashboard.ttf" />
+    <Content Include="Template\AdminLite\fonts\dashboard.woff" />
+    <Content Include="Template\AdminLite\icons-reference\fonts\dashboard.eot" />
+    <Content Include="Template\AdminLite\icons-reference\fonts\dashboard.ttf" />
+    <Content Include="Template\AdminLite\icons-reference\fonts\dashboard.woff" />
+    <Content Include="Template\AdminLite\vendor\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Template\AdminLite\vendor\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Template\AdminLite\vendor\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Template\AdminLite\vendor\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Template\AdminLite\vendor\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Template\AdminLite\vendor\jquery.cookie\component.json" />
+    <Content Include="Template\AdminLite\vendor\jquery.cookie\cookie.jquery.json" />
+    <Content Include="Views\Layout\_Customer.cshtml" />
+    <Content Include="Views\Index\IndexCustomer.cshtml" />
+    <Content Include="Views\Layout\_Admin.cshtml" />
+    <Content Include="Views\Index\IndexAdmin.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Cart\CartPartial.cshtml" />
+    <Content Include="Views\Cart\Cart.cshtml" />
+    <Content Include="Views\Customer\Login.cshtml" />
+    <Content Include="Views\Cart\CheckOut.cshtml" />
+    <Content Include="Views\Customer\Register.cshtml" />
+    <Content Include="Views\Customer\ViewAccount.cshtml" />
+    <Content Include="Views\Customer\OrderList.cshtml" />
+    <Content Include="Views\Customer\OrderDetails.cshtml" />
+    <Content Include="Views\Customer\EditAccount.cshtml" />
+    <Content Include="Views\Customer\ChangePassword.cshtml" />
+    <Content Include="Views\Product\Reviews.cshtml" />
+    <Content Include="Views\Product\AddReview.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Brands\Create.cshtml" />
+    <Content Include="Views\Brands\Delete.cshtml" />
+    <Content Include="Views\Brands\Details.cshtml" />
+    <Content Include="Views\Brands\Edit.cshtml" />
+    <Content Include="Views\Brands\Index.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\OrderDetails.cshtml" />
+    <Content Include="Views\Order\Customer.cshtml" />
+    <Content Include="Views\Order\Activities.cshtml" />
+    <Content Include="Views\Order\CustomerOrderDetails.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Report\MonthReport.cshtml" />
+    <Content Include="Views\Report\DateReport.cshtml" />
+    <Content Include="Views\Report\YearReport.cshtml" />
+    <Content Include="Views\Cart\CompareList.cshtml" />
+    <Content Include="Views\Cart\CompareListPartial.cshtml" />
+    <Content Include="Views\Cart\WishList.cshtml" />
+    <Content Include="Views\Cart\WishListPartial.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Template\AdminLite\vendor\font-awesome\less\" />
+    <Folder Include="Template\AdminLite\vendor\font-awesome\scss\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56888</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:56888/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

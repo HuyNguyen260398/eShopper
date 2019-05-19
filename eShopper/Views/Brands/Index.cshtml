@@ -1,0 +1,66 @@
+﻿@model PagedList.IPagedList<eShopper.Models.Brand>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedListAdmin.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/_Admin.cshtml";
+}
+
+<h2>Brand List</h2>
+
+@using (Html.BeginForm("Index", "Brands", FormMethod.Get))
+{
+    <table>
+        <tr>
+            <td>@Html.TextBox("name", "", new { @class = "form-control", @placeholder = "brand name", @style = "width: 200px" })</td>
+            <td><button class="btn btn-sm" type="submit" style="color:white; background-color:#33B35A">Search</button></td>
+        </tr>
+    </table>
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Brand
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand_Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Brand_ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Brand_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Brand_ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    <h6>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</h6>
+
+    @Html.PagedListPager(Model, page_no => Url.Action("Index", new
+    {
+        page_no,
+        name = Request.QueryString["name"]
+    }),
+                          new PagedListRenderOptions
+                          {
+                              DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                              DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                              DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                              DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                              MaximumPageNumbersToDisplay = 3
+                          })
+</div>

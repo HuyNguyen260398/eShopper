@@ -1,0 +1,69 @@
+﻿@model PagedList.IPagedList<eShopper.Models.User>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedListAdmin.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "CustomerList";
+    Layout = "~/Views/Layout/_Admin.cshtml";
+}
+
+@using (Html.BeginForm("Customer", "Order", FormMethod.Get))
+{
+    <table class="table">
+        <tr style="border-top:hidden">
+            <td>@Html.TextBox("name", "", new { @placeholder = "customer's name", @class = "form-control" })</td>
+            <td>@Html.TextBox("username", "", new { @placeholder = "customer's username", @class = "form-control" })</td>
+            <td><input type="submit" value="Search" class="btn" style="background-color:#33B35A; color:white" /></td>
+            <td><a href=@Url.Action("Customer", "Order") class="btn" style="background-color:#33B35A; color:white">Refresh</a></td>
+        </tr>
+    </table>
+}
+
+<table class="table" style="border: 2px solid #33B35A">
+    <tr>
+        <th style="background-color: #33B35A; color:white; text-align:center">ID</th>
+        <th style="background-color: #33B35A; color:white; text-align:center">First Name</th>
+        <th style="background-color: #33B35A; color:white; text-align:center">Last Name</th>
+        <th style="background-color: #33B35A; color:white; text-align:center">Username</th>
+        <th style="background-color: #33B35A; color:white; text-align:center">Email</th>
+        <th style="background-color: #33B35A; color:white; text-align:center">Phone</th>
+        <th style="background-color: #33B35A; color:white; text-align:center">Address</th>
+        <th style="background-color: #33B35A; color:white; text-align:center"></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="text-align:center">@item.User_ID</td>
+            <td style="text-align:center">@item.User_Firstname</td>
+            <td style="text-align:center">@item.User_Lastname</td>
+            <td style="text-align:center">@item.User_Username</td>
+            <td style="text-align:center">@item.User_Email</td>
+            <td style="text-align:center">@item.User_Phone</td>
+            <td style="text-align:center">@item.User_Address</td>
+            <td style="text-align:center">
+                <a href=@Url.Action("Activities", "Order", new { id = item.User_ID }) class="btn btn-sm" style="background-color:#33B35A; color:white">Activities</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    <h6 style="color:#33B35A">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</h6>
+
+    @Html.PagedListPager(Model, page_no => Url.Action("Customer", new
+    {
+        page_no,
+        name = Request.QueryString["name"],
+        username = Request.QueryString["username"]
+    }),
+                                   new PagedListRenderOptions
+                                   {
+                                       DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                       DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                       DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                       DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                       MaximumPageNumbersToDisplay = 3
+                                   })
+</div>
+

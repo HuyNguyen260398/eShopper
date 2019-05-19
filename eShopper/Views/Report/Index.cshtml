@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/_Admin.cshtml";
+}
+
+<script src="~/Template/AdminLite/js/charts-custom.js"></script>
+
+<h2>Report</h2>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card bar-chart-example">
+            <div class="card-header d-flex align-items-center">
+                <h4>Sales Statistic in 2019</h4>
+            </div>
+            <div class="card-body">
+                <canvas id="barChartReport"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+    $(document).ready(function () {
+        var values = @Html.Raw(Json.Encode(ViewBag.Values));
+
+        var BARCHARTREPORT = $('#barChartReport');
+
+        var barChartReport = new Chart(BARCHARTREPORT, {
+            type: 'bar',
+            data: {
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                datasets: [
+                    {
+                        label: "Total sales in 2019",
+                        backgroundColor: [
+                            'rgba(51, 179, 90, 0.6)',
+                            'rgba(51, 179, 90, 0.6)',
+                            'rgba(51, 179, 90, 0.6)',
+                            'rgba(51, 179, 90, 0.6)',
+                            'rgba(51, 179, 90, 0.6)',
+                            'rgba(51, 179, 90, 0.6)',
+                            'rgba(51, 179, 90, 0.6)',
+                            'rgba(51, 179, 90, 0.6)',
+                            'rgba(51, 179, 90, 0.6)',
+                            'rgba(51, 179, 90, 0.6)',
+                            'rgba(51, 179, 90, 0.6)',
+                            'rgba(51, 179, 90, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(51, 179, 90, 1)',
+                            'rgba(51, 179, 90, 1)',
+                            'rgba(51, 179, 90, 1)',
+                            'rgba(51, 179, 90, 1)',
+                            'rgba(51, 179, 90, 1)',
+                            'rgba(51, 179, 90, 1)',
+                            'rgba(51, 179, 90, 1)',
+                            'rgba(51, 179, 90, 1)',
+                            'rgba(51, 179, 90, 1)',
+                            'rgba(51, 179, 90, 1)',
+                            'rgba(51, 179, 90, 1)',
+                            'rgba(51, 179, 90, 1)'
+                        ],
+                        borderWidth: 1,
+                        data: values,
+                    }
+                ]
+            }
+        });
+    });
+
+    </script>
+}
+

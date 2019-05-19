@@ -1,0 +1,103 @@
+﻿@model PagedList.IPagedList<eShopper.Models.Product>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedListAdmin.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/_Admin.cshtml";
+}
+
+<h2>Product List</h2>
+
+@using (Html.BeginForm("Index", "Products", FormMethod.Get))
+{
+    <table>
+        <tr>
+            <td>@Html.TextBox("name", "", new { @class = "form-control", @placeholder = "product name", @style = "width: 200px" })</td>
+            <td><button class="btn btn-sm" type="submit" style="color:white; background-color:#33B35A">Search</button></td>
+        </tr>
+    </table>
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Image
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Brand
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Condition
+        </th>
+        <th>
+            Availability
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@item.Product_Image" style="height:128px; width:128px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.Brand_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Category_Name)
+            </td>
+            <td>
+                $ @String.Format("{0:0,0}", item.Product_Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_Condition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_Availability)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Product_ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Product_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Product_ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    <h6>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</h6>
+
+    @Html.PagedListPager(Model, page_no => Url.Action("Index", new
+    {
+        page_no,
+        name = Request.QueryString["name"]
+    }),
+                  new PagedListRenderOptions
+                  {
+                      DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                      DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                      DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                      DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                      MaximumPageNumbersToDisplay = 3
+                  })
+</div>

@@ -1,0 +1,51 @@
+﻿@using eShopper.Models
+@model List<Cart>
+
+@{
+    ViewBag.Title = "CompareList";
+    Layout = "~/Views/Layout/_Customer.cshtml";
+}
+
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href=@Url.Action("IndexCustomer", "Index")>Home</a></li>
+                <li class="active">Compare List</li>
+            </ol>
+        </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <tr>
+                    @if (Model.Count() > 0)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <td>
+                                <table class="table">
+                                    <tr><td style="text-align: center">@item.ProductId</td></tr>
+                                    <tr><td style="text-align: center"><a href=""><img src="@item.ProductImage" alt="" style="width: 200px; height: 200px"></a></td></tr>
+                                    <tr><td style="text-align: center">@item.ProductName</td></tr>
+                                    <tr><td style="text-align: center">@item.ProductCategory</td></tr>
+                                    <tr><td style="text-align: center">@item.ProductBrand</td></tr>
+                                    <tr><td style="text-align: center">@item.ProductCondition</td></tr>
+                                    <tr><td style="text-align: center">@item.ProductAvailability</td></tr>
+                                    <tr><td style="text-align: center">$ @String.Format("{0:0,0}", item.ProductPrice)</td></tr>
+                                    <tr><td style="text-align: center"><a class="btn" style="background-color:#FFAD41; color:white; width:100px" href=@Url.Action("RemoveCompareList", "Cart", new { id = item.ProductId })><i class="fa fa-times"></i></a></td></tr>
+                                </table>
+                            </td>
+                        }
+                    }
+                    else
+                    {
+                        <td style="text-align:center; color: #FFAD41">
+                            <strong>
+                                Compare list is empty!
+                            </strong>
+                        </td>
+                    }
+                </tr>
+            </table>
+        </div>
+    </div>
+</section> <!--/#cart_items-->

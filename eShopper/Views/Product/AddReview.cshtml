@@ -1,0 +1,23 @@
+﻿@model eShopper.Models.Review
+
+@using (Html.BeginForm("AddReview", "Product", FormMethod.Post))
+{
+    @Html.AntiForgeryToken();
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" });
+
+    <span>
+        @Html.TextBoxFor(model => model.Review_Name, new { @placeholder = "Your Name", @style = "width:300px" })
+        @Html.ValidationMessageFor(model => model.Review_Name, "", new { @class = "text-danger" })
+
+        @Html.TextBoxFor(model => model.Review_Email, new { @placeholder = "Email Address", @style = "width:300px" })
+        @Html.ValidationMessageFor(model => model.Review_Email, "", new { @class = "text-danger" })
+    </span>
+
+    @Html.TextAreaFor(model => model.Review_Detail, new { @placeholder = "Your Comments..." })
+    @Html.ValidationMessageFor(model => model.Review_Detail, "", new { @class = "text-danger" })
+
+    <b>Rating: </b> <img src="~/Template/Eshopper/images/product-details/rating.png" alt="" />
+    <button type="submit" class="btn btn-default pull-right">
+        Submit
+    </button>
+}

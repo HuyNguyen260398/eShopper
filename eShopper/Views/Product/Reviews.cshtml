@@ -1,0 +1,16 @@
+﻿@model List<eShopper.Models.Review>
+
+@foreach (var item in Model)
+{
+    <li class="media" style="width: 100%; padding-left: 20px">
+        <div class="media-body">
+            <ul class="sinlge-post-meta">
+                <li><i class="fa fa-user"></i> @item.Review_Name</li>
+                <li><i class="fa fa-clock-o"></i> @item.Review_Datetime.Value.ToLongTimeString()</li>
+                <li><i class="fa fa-calendar"></i> @item.Review_Datetime.Value.ToShortDateString()</li>
+            </ul>
+            <p>@item.Review_Detail</p>
+            <a class="btn btn-sm" href="#" style="color:white; background-color:#ffad41; width: 100px"><i class="fa fa-reply" style="color:white"></i>Reply</a>
+        </div>
+    </li>
+}

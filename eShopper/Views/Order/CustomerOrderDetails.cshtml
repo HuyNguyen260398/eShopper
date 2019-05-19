@@ -1,0 +1,102 @@
+﻿@model eShopper.Models.Order
+
+@{
+    ViewBag.Title = "OrderDetails";
+    Layout = "~/Views/Layout/_Admin.cshtml";
+
+    int i = 0;
+}
+
+<h2>Customer Info</h2>
+
+<table class="table" style="border: 2px solid #33B35A">
+    <tr>
+        <td style="background-color: #33B35A; color:white; width:200px"><strong>First Name</strong></td>
+        <td>@Model.User.User_Firstname</td>
+    </tr>
+    <tr>
+        <td style="background-color: #33B35A; color:white"><strong>Last Name</strong></td>
+        <td>@Model.User.User_Lastname</td>
+    </tr>
+    <tr>
+        <td style="background-color: #33B35A; color:white"><strong>Username</strong></td>
+        <td>@Model.User.User_Username</td>
+    </tr>
+    <tr>
+        <td style="background-color: #33B35A; color:white"><strong>Email</strong></td>
+        <td>@Model.User.User_Email</td>
+    </tr>
+    <tr>
+        <td style="background-color: #33B35A; color:white"><strong>Phone</strong></td>
+        <td>@Model.User.User_Phone</td>
+    </tr>
+    <tr>
+        <td style="background-color: #33B35A; color:white"><strong>Address</strong></td>
+        <td>@Model.User.User_Address</td>
+    </tr>
+</table>
+
+<br />
+<h2>Order Info</h2>
+
+<table class="table" style="border: 2px solid #33B35A">
+    <tr>
+        <td style="background-color: #33B35A; color:white; width:200px"><strong>Date</strong></td>
+        <td>@Model.Order_Date</td>
+    </tr>
+    <tr>
+        <td style="background-color: #33B35A; color:white"><strong>Payment</strong></td>
+        <td>@Model.Order_Payment</td>
+    </tr>
+    <tr>
+        <td style="background-color: #33B35A; color:white"><strong>Payment Method</strong></td>
+        <td>@Model.Payment_Method</td>
+    </tr>
+    <tr>
+        <td style="background-color: #33B35A; color:white"><strong>Payment Status</strong></td>
+        <td>@Model.Payment_Status</td>
+    </tr>
+    <tr>
+        <td style="background-color: #33B35A; color:white"><strong>Order Status</strong></td>
+        <td>
+            @Model.Order_Status
+            @if (Model.Order_Status.Equals("Pending"))
+            {
+                <a href=@Url.Action("DeliverOrder", "Order", new { id = Model.Order_ID }) class="btn btn-sm" style="background-color:#33B35A; color:white; float:right">Mark as dilivered</a>
+            }
+        </td>
+    </tr>
+    <tr>
+        <td style="background-color: #33B35A; color:white"><strong>Description</strong></td>
+        <td>@Model.Order_Description</td>
+    </tr>
+</table>
+
+<br />
+<h2>Order Items</h2>
+
+<table class="table" style="border: 2px solid #33B35A">
+    <tr>
+        <th style="background-color: #33B35A; color:white; text-align:center">No</th>
+        <th style="background-color: #33B35A; color:white; text-align:center" colspan="2">Item</th>
+        <th style="background-color: #33B35A; color:white; text-align:center">Price</th>
+        <th style="background-color: #33B35A; color:white; text-align:center">Quantity</th>
+        <th style="background-color: #33B35A; color:white; text-align:center">Subtotal</th>
+    </tr>
+    @foreach (var item in (List<eShopper.Models.Order_Detail>)ViewBag.Details)
+    {
+        i++;
+        <tr>
+            <td style="text-align:center">@i</td>
+            <td style="text-align:center"><img src=@item.Product.Product_Image style="width:64px; height:64px" /></td>
+            <td style="text-align:center">@item.Product.Product_Name</td>
+            <td style="text-align:center">$ @String.Format("{0:0,0}", item.Product.Product_Price)</td>
+            <td style="text-align:center">@item.Quantity</td>
+            <td style="text-align:center">$ @String.Format("{0:0,0}", (item.Product.Product_Price * item.Quantity))</td>
+        </tr>
+    }
+</table>
+
+<div class="col-md-12">
+    <a href=@Url.Action("Activities", "Order", new { id = Model.Order_Customer }) class="btn" style="background-color:#33B35A; color:white; float:right; margin-bottom:15px">Back to list</a>
+</div>

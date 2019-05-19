@@ -1,0 +1,65 @@
+﻿@model eShopper.Models.User
+
+@{
+    ViewBag.Title = "EditAccount";
+    Layout = "~/Views/Layout/_Customer.cshtml";
+
+    var customer = (eShopper.Models.User)ViewBag.Customer;
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="title text-center">Update <strong>Info</strong></h2>
+            </div>
+        </div>
+        <div class="row">
+            @using (Html.BeginForm("EditAccount", "Customer", FormMethod.Post))
+            {
+                <table class="table" style="width: 900px; margin-left: 10px">
+                    <tr style="border-bottom:hidden; border-top: hidden">
+                        @Html.HiddenFor(model => model.User_Password, new { Value = customer.User_Password })
+                        @Html.HiddenFor(model => model.ConfirmPassword, new { Value = customer.User_Password })
+                        @Html.HiddenFor(model => model.User_Username, new { Value = customer.User_Username })
+                    </tr>
+                    <tr style="border-bottom:hidden">
+                        <td>
+                            First Name:
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.User_Firstname, new { htmlAttributes = new { @class = "form-control form-control-md" } })
+                        </td>
+                        <td>
+                            Phone:
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.User_Phone, new { htmlAttributes = new { @class = "form-control form-control-md" } })
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:hidden">
+                        <td>
+                            Last Name:
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.User_Lastname, new { htmlAttributes = new { @class = "form-control form-control-md" } })
+                        </td>
+                        <td>
+                            Address:
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.User_Address, new { htmlAttributes = new { @class = "form-control form-control-md" } })
+                        </td>
+                    </tr>
+                </table>
+                <p><button type="submit" class="btn" style="background-color:#ffad41; color:white; margin-left:10px">Update</button></p>
+                <br />
+                if (ViewBag.Message != null)
+                {
+                    <h4 style="color:green; margin-left:10px">@ViewBag.Message</h4>
+                }
+            }
+        </div>
+    </div>
+</section>
+

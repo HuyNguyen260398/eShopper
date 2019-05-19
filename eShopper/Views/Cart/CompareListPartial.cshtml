@@ -1,0 +1,8 @@
+﻿@if (ViewBag.TotalAmount > 0)
+{
+    <a href=@Url.Action("CompareList", "Cart")><i class="fa fa-star"></i> (@ViewBag.TotalAmount) Compare</a>
+}
+else
+{
+    <li><a href=@Url.Action("CompareList", "Cart")><i class="fa fa-star"></i> Compare</a></li>
+}

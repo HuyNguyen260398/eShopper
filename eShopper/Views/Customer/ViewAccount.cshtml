@@ -1,0 +1,48 @@
+﻿@model eShopper.Models.User
+
+@{
+    ViewBag.Title = "ViewAccount";
+    Layout = "~/Views/Layout/_Customer.cshtml";
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="title text-center">My <strong>Account</strong></h2>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table" style="width: 700px; margin-left: 10px">
+                <tr style="border-bottom:hidden; border-top: hidden">
+                    <td>
+                        <strong>First Name:</strong>
+                    </td>
+                    <td>@Model.User_Firstname</td>
+                    <td>
+                        <strong>Username:</strong>
+                    </td>
+                    <td>@Model.User_Username</td>
+                    <td>
+                        <strong>Phone:</strong>
+                    </td>
+                    <td>@Model.User_Phone</td>
+                </tr>
+                <tr style="border-bottom:hidden">
+                    <td>
+                        <strong>Last Name:</strong>
+                    </td>
+                    <td>@Model.User_Lastname</td>
+                    <td>
+                        <strong>Email:</strong>
+                    </td>
+                    <td>@Model.User_Email</td>
+                    <td>
+                        <strong>Address:</strong>
+                    </td>
+                    <td>@Model.User_Address</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>

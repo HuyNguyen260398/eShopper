@@ -1,0 +1,8 @@
+﻿@if (ViewBag.TotalAmount > 0)
+{
+    <a href=@Url.Action("WishList", "Cart")><i class="fa fa-heart"></i> (@ViewBag.TotalAmount) Wishlist</a>
+}
+else
+{
+    <a href=@Url.Action("WishList", "Cart")><i class="fa fa-heart"></i> Wishlist</a>
+}

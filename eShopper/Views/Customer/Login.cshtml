@@ -1,0 +1,52 @@
+﻿@model eShopper.Models.User
+
+@{
+                /**/
+
+                ViewBag.Title = "Login";
+                Layout = "~/Views/Layout/_Customer.cshtml";
+}
+
+<section id="form">
+    <!--form-->
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href=@Url.Action("IndexCustomer", "Index")>Home</a></li>
+                <li class="active">Login</li>
+            </ol>
+        </div><!--/breadcrums-->
+
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-1">
+                <div class="login-form">
+                    <!--login form-->
+                    <h2>Login to your account</h2>
+                    @using (Html.BeginForm("Login", "Customer", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken();
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" });
+
+                        @Html.EditorFor(model => model.User_Email, new { htmlAttributes = new { @placeholder = "Email", @type = "email" } });
+                        @Html.ValidationMessageFor(model => model.User_Email, "", new { @class = "text-danger" });
+                        @Html.ValidationMessage("EmailError", new { @class = "text-danger" });
+
+                        @Html.EditorFor(model => model.User_Password, new { htmlAttributes = new { @placeholder = "Password" } });
+                        @Html.ValidationMessageFor(model => model.User_Password, "", new { @class = "text-danger" });
+                        @Html.ValidationMessage("PasswordError", new { @class = "text-danger" });
+
+                        <button type="submit" class="btn btn-default">Login</button>
+                    }
+                    <br />
+                    <a href=@Url.Action("Register", "Customer") style="color:#FFAD41">Don't have account yet!</a>
+                </div><!--/login form-->
+            </div>
+        </div>
+    </div>
+</section><!--/form-->
+
+@section Scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

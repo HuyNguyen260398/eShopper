@@ -1,0 +1,135 @@
+﻿@model eShopper.Models.Product
+@using eShopper.Models
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Layout/_Customer.cshtml";
+
+    eShopperEntities db = new eShopperEntities();
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Category</h2>
+                    <div class="panel-group category-products" id="accordian">
+                        <!--category-products-->
+                        @foreach (var item in (IEnumerable<eShopper.Models.Category>)ViewBag.Categories)
+                        {
+                            var count = db.Products.Where(a => a.Product_Category == item.Category_ID).ToList().Count();
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><a href=@Url.Action("Index", "Product", new { category = item.Category_ID })><span class="pull-right">(@count)</span>@item.Category_Name</a></h4>
+                                </div>
+                            </div>
+                        }
+                    </div><!--/category-products-->
+
+                    <div class="brands_products">
+                        <!--brands_products-->
+                        <h2>Brands</h2>
+                        <div class="brands-name">
+                            <ul class="nav nav-pills nav-stacked">
+                                @foreach (var item in (IEnumerable<eShopper.Models.Brand>)ViewBag.Brands)
+                                {
+                                    var count = db.Products.Where(a => a.Product_Brand == item.Brand_ID).ToList().Count();
+
+                                    <li><a href=@Url.Action("Index", "Product", new { brand = item.Brand_ID })><span class="pull-right">(@count)</span>@item.Brand_Name</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div><!--/brands_products-->
+
+                    <div class="price-range">
+                        <!--price-range-->
+                        <h2>Price Range</h2>
+                        <div class="well text-center">
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
+                            <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+                        </div>
+                    </div><!--/price-range-->
+
+                    <div class="shipping text-center">
+                        <!--shipping-->
+                        <img src="~/Template/Eshopper/images/home/shipping.jpg" alt="" />
+                    </div><!--/shipping-->
+
+                </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="product-details">
+                    <!--product-details-->
+                    <div class="col-sm-5">
+                        <div class="view-product">
+                            <img src="@Model.Product_Image" alt="" />
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="product-information">
+                            <!--/product-information-->
+                            <img src="~/Template/Eshopper/images/product-details/new.jpg" class="newarrival" alt="" />
+                            <h2>@Model.Product_Name</h2>
+                            <p>Product ID: @Model.Product_ID</p>
+                            <img src="~/Template/Eshopper/images/product-details/rating.png" alt="" />
+
+                            @using (Html.BeginForm("AddCart", "Cart", new { @id = Model.Product_ID, @strURL = Request.Url.ToString() }))
+                            {
+                                <span>
+                                    <span>$ @String.Format("{0:0,0}", Model.Product_Price)</span>
+                                    <label>Quantity:</label>
+                                    @Html.TextBox("txtQuantity", 1, new { @style = "width: 50px" })
+                                    <button type="submit" class="btn btn-fefault cart">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        Add to cart
+                                    </button>
+
+                                </span>
+                            }
+
+                            <p><b>Availability:</b> @Model.Product_Availability</p>
+                            <p><b>Condition:</b> @Model.Product_Condition</p>
+                            <p><b>Category:</b> @Model.Category.Category_Name</p>
+                            <p><b>Brand:</b> @Model.Brand.Brand_Name</p>
+                            <a href=""><img src="~/Template/Eshopper/images/product-details/share.png" class="share img-responsive" alt="" /></a>
+                        </div><!--/product-information-->
+                    </div>
+                </div><!--/product-details-->
+
+                <div class="category-tab shop-details-tab">
+                    <!--category-tab-->
+                    <div class="col-sm-12">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#reviews" data-toggle="tab">Reviews (@ViewBag.Total)</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="reviews">
+                            <div class="col-sm-12">
+                                <div class="response-area">
+                                    <ul class="media-list">
+                                        
+                                        @Html.Action("Reviews", "Product", new { p_id =  Model.Product_ID})
+
+                                    </ul>
+                                </div><!--/Response-area-->
+                            </div>
+                            <div class="col-sm-12">
+                                <p><b>Write Your Review</b></p>
+
+                                @Html.Action("AddReview", "Product")
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div><!--/category-tab-->
+
+            </div>
+        </div>
+    </div>
+</section>
+
